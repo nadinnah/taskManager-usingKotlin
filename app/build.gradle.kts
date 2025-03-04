@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.21"
     kotlin("kapt")
+    alias(libs.plugins.google.gms.google.services)
 
 }
 
@@ -52,6 +53,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -94,6 +96,30 @@ dependencies {
 
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.activity.compose.v131)
+
+    // Testing dependencies
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit.v113)
+    androidTestImplementation(libs.androidx.espresso.core.v340)
+
+
+    // Import Firebase BoM (Bill of Materials)
+    implementation(platform(libs.firebase.bom))
+
+    // Firebase Authentication
+    implementation(libs.firebase.auth.ktx)
+
+    // Firebase Firestore
+    implementation(libs.firebase.firestore.ktx)
+
+    // Kotlin Coroutines for Firebase
+    implementation(libs.kotlinx.coroutines.play.services)
+
+    // Navigation for Jetpack Compose
+    implementation("androidx.navigation:navigation-compose:2.4.2") {
+        isTransitive = true
+    }
 
 
 }
