@@ -121,5 +121,5 @@ dependencies {
         isTransitive = true
     }
 
-
+    implementation (libs.androidx.material.icons.extended)
 }
