@@ -1,4 +1,4 @@
-package com.example.taskmanager.home.domain.model
+package com.example.taskmanager.tasks.domain.model
 
 enum class ApiError(val message: String) {
     NetworkError("Network Error"),

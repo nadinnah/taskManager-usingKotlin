@@ -103,6 +103,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit.v113)
     androidTestImplementation(libs.androidx.espresso.core.v340)
 
+    val nav_version = "2.8.8"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 
     // Import Firebase BoM (Bill of Materials)
     implementation(platform(libs.firebase.bom))

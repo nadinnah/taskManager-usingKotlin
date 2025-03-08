@@ -1,8 +1,8 @@
-package com.example.taskmanager.home.domain.repository
+package com.example.taskmanager.tasks.domain.repository
 
 import arrow.core.Either
-import com.example.taskmanager.home.domain.model.NetworkError
-import com.example.taskmanager.home.domain.model.Task
+import com.example.taskmanager.tasks.domain.model.NetworkError
+import com.example.taskmanager.tasks.domain.model.Task
 
 interface TaskRepository {
     //no implementation inside domain layer that's why interface

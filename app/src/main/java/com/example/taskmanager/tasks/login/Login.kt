@@ -1,4 +1,4 @@
-package com.example.taskmanager.home.login
+package com.example.taskmanager.tasks.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -35,7 +35,6 @@ import com.example.taskmanager.ui.theme.TaskManagerTheme
 fun LoginScreen(
     loginViewModel: LoginViewModel? = null,
     onNavToHomePage: () -> Unit,
-    onNavToLoginPage: () -> Unit,
     onNavToSignupPage: () -> Unit
 ) {
     val loginUiState = loginViewModel?.loginUiState
@@ -127,11 +126,10 @@ fun LoginScreen(
 fun SignUpScreen(
     loginViewModel: LoginViewModel? = null,
     onNavToHomePage: () -> Unit,
-    onNavToLoginPage: () -> Unit,
-    onNavToSignupPage: () -> Unit
+    onNavToLoginPage: () -> Unit
 ) {
     val loginUiState = loginViewModel?.loginUiState
-    val isError = loginUiState?.loginError != null
+    val isError = loginUiState?.signUpError != null
     val context = LocalContext.current
 
     Column(
@@ -140,14 +138,14 @@ fun SignUpScreen(
     ) {
         Spacer(modifier = Modifier.padding(30.dp))
         Text(
-            text = "Login",
+            text = "Sign Up",
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Black,
             color = MaterialTheme.colorScheme.primary
         )
         if (isError) {
             Text(
-                text = loginUiState?.loginError ?: "unknown error",
+                text = loginUiState?.signUpError ?: "unknown error",
                 color = Color.Red
             )
         }
@@ -155,8 +153,8 @@ fun SignUpScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            value = loginUiState?.userName ?: "",
-            onValueChange = { loginViewModel?.onUserNameChange(it) },
+            value = loginUiState?.userNameSignUp ?: "",
+            onValueChange = { loginViewModel?.onUserNameChangeSignup(it) },
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Person, contentDescription = null)
             },
@@ -170,8 +168,8 @@ fun SignUpScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            value = loginUiState?.password ?: "",
-            onValueChange = { loginViewModel?.onPasswordChange(it) },
+            value = loginUiState?.passwordSignUp ?: "",
+            onValueChange = { loginViewModel?.onPasswordChangeSignup(it) },
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Lock, contentDescription = null)
             },
@@ -182,7 +180,23 @@ fun SignUpScreen(
             isError = isError
         )
 
-        Button(onClick = { loginViewModel?.loginUser(context) }) {
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            value = loginUiState?.confirmPasswordSignUp ?: "",
+            onValueChange = { loginViewModel?.onConfirmPasswordChange(it) },
+            leadingIcon = {
+                Icon(imageVector = Icons.Default.Lock, contentDescription = null)
+            },
+            visualTransformation = PasswordVisualTransformation(),
+            label = {
+                Text(text = "Confirm Password")
+            },
+            isError = isError
+        )
+
+        Button(onClick = { loginViewModel?.createUser(context) }) {
             Text(text = "Sign in")
 
         }
@@ -190,10 +204,10 @@ fun SignUpScreen(
         Spacer(modifier = Modifier.padding(16.dp))
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            Text(text = "Don't have an account?")
+            Text(text = "Already have an account?")
             Spacer(modifier = Modifier.padding(8.dp))
-            TextButton(onClick = { onNavToSignupPage.invoke() }) {
-                Text(text = "SignUp")
+            TextButton(onClick = { onNavToLoginPage.invoke() }) {
+                Text(text = "Sign In")
             }
 
         }
@@ -221,8 +235,18 @@ fun PreviewLoginScreen() {
     TaskManagerTheme {
         LoginScreen(
             onNavToHomePage = { /*TODO*/ },
-            loginViewModel = null,
-            onNavToLoginPage = { TODO() },
+        ) {
+
+        }
+    }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun PreviewSignupPage() {
+    TaskManagerTheme {
+        SignUpScreen(
+            onNavToHomePage = { /*TODO*/ },
         ) {
 
         }

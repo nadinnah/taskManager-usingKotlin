@@ -1,4 +1,4 @@
-package com.example.taskmanager.home.login
+package com.example.taskmanager.tasks.login
 
 import android.content.Context
 import android.widget.Toast
@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.taskmanager.home.domain.repository.AuthRepository
+import com.example.taskmanager.tasks.domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository:AuthRepository=AuthRepository()):ViewModel(){

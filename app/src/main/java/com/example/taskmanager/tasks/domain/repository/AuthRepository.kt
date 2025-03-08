@@ -1,4 +1,4 @@
-package com.example.taskmanager.home.domain.repository
+package com.example.taskmanager.tasks.domain.repository
 
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
