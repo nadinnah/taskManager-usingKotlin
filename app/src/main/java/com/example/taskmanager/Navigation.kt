@@ -36,7 +36,8 @@ fun Navigation(
 
                         }
                     }
-                }
+                },
+                loginViewModel = loginViewModel,
             ) {
                 navController.navigate(LoginRoutes.Signup.name) {
                     launchSingleTop = true
@@ -54,7 +55,9 @@ fun Navigation(
                         inclusive = true
                     }
                 }
-            }) {
+            },
+                loginViewModel = loginViewModel
+            ) {
                 navController.navigate(LoginRoutes.SignIn.name)
             }
         }
