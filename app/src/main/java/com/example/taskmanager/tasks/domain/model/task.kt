@@ -1,6 +1,6 @@
 package com.example.taskmanager.tasks.domain.model
 
-import java.sql.Timestamp
+import com.google.firebase.Timestamp
 
 enum class TaskCategory {
     WORK,
@@ -18,14 +18,15 @@ enum class TaskStatus {
 }
 
 data class Task (
-    val id: Int,
-    val task: String,
-    val status: TaskStatus,
-    val createdAt: Timestamp,
+    val documentId: String="",
+    val taskTitle: String= "",
+    val status: TaskStatus= TaskStatus.IN_PROGRESS,
+    val createdAt: Timestamp= Timestamp.now(),
     val updatedAt: Timestamp,
+    val colorIndex:Int=0,
     val dueDate: Timestamp,
-    val isDeleted: Boolean,
-    val userid: Int,
-    val category: TaskCategory,
+    val isDeleted: Boolean=false,
+    val userId: String="",
+    val category: TaskCategory= TaskCategory.PERSONAL,
 )
 
