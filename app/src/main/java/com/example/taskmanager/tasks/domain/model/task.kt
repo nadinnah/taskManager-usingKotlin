@@ -22,7 +22,6 @@ data class Task (
     val taskTitle: String= "",
     val status: TaskStatus= TaskStatus.IN_PROGRESS,
     val createdAt: Timestamp= Timestamp.now(),
-    val updatedAt: Timestamp,
     val colorIndex:Int=0,
     val dueDate: Timestamp,
     val isDeleted: Boolean=false,

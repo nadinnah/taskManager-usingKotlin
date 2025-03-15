@@ -66,7 +66,6 @@ class StorageRepository() {
         taskTitle: String,
         status: TaskStatus,
         createdAt: Timestamp,
-        updatedAt: Timestamp,
         color: Int = 0,
         dueDate: Timestamp,
         isDeleted: Boolean = false,
@@ -80,7 +79,6 @@ class StorageRepository() {
             taskTitle,
             status,
             createdAt,
-            updatedAt,
             colorIndex= color,
             dueDate,
             isDeleted,
@@ -95,6 +93,27 @@ class StorageRepository() {
     }
 
     //fun delete
+    fun deleteTask(taskId: String, onComplete: (Boolean) -> Unit){
+        tasksRef.document(taskId).delete().addOnCompleteListener{
+            onComplete.invoke(it.isSuccessful)
+        }
+    }
+
+    fun updateTask(taskId:String, taskTitle:String, color: Int, category: TaskCategory, status:TaskStatus, dueDate:Timestamp, onResult:(Boolean) -> Unit){
+
+        val updateData= hashMapOf<String, Any>(
+            "taskTitle" to taskTitle,
+            "colorIndex" to color,
+            "category" to category,
+            "status" to status,
+            "dueDate" to dueDate
+        )
+
+        tasksRef.document(taskId).update(updateData).addOnCompleteListener {
+            onResult(it.isSuccessful)
+        }
+
+    }
 }
 
 //manages the state of getting the data
