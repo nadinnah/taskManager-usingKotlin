@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.firebase.firestore)
+    implementation(libs.androidx.compose.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,6 +67,9 @@ dependencies {
 
     // Jetpack Compose integration
     implementation(libs.androidx.navigation.compose)
+
+    implementation (libs.androidx.wear.compose.material3)
+    implementation (libs.androidx.material)
 
     // Views/Fragments integration
     implementation(libs.androidx.navigation.fragment)
